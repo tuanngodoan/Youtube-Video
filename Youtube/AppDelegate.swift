@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Youtube
 //
-//  Created by Doan Tuan on 4/26/17.
-//  Copyright © 2017 Doan Tuan. All rights reserved.
+//  Created by Doan Tuan on 4/19/17.
+//  Copyright © 2017 doantuan. All rights reserved.
 //
 
 import UIKit

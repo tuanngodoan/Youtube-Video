@@ -18,6 +18,7 @@ class CustomNavigationBar: UINavigationBar {
     func customNavigation(){
         //barTintColor = UIColor.red
         barTintColor = UIColor(red: 204/255, green: 24/255, blue: 30/255, alpha: 0.8)
+        tintColor = UIColor.white
     }
     /*
     // Only override draw() if you perform custom drawing.

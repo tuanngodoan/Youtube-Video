@@ -27,9 +27,7 @@ class PlayVideoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("IDVIDEO:",idVideo)
-        
-        //self.navigationItem.hidesBackButton = true
-        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         DispatchQueue.global().sync {
             self.playVideoView.load(withVideoId: self.idVideo)

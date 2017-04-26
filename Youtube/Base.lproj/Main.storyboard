@@ -85,17 +85,19 @@
                     </view>
                     <navigationItem key="navigationItem" id="Wyq-IT-zTj" userLabel=" " colorLabel="IBBuiltInLabel-Red">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Youtube Video" allowsEditingTextAttributes="YES" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="always" id="Dw9-hr-sv1">
+                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Youtube Video" allowsEditingTextAttributes="YES" placeholder="Search Video" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="always" id="Dw9-hr-sv1">
                             <rect key="frame" x="10" y="7" width="261" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.81568627450980391" green="0.23137254901960785" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
                         </textField>
                         <rightBarButtonItems>
                             <barButtonItem title="item" style="plain" id="qeT-zn-YIO" customClass="CustomBarButton" customModule="Youtube" customModuleProvider="target"/>
                             <barButtonItem style="plain" systemItem="search" id="CqJ-wD-SUr">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="searchButton:" destination="X6U-9G-XT0" id="0ay-2D-kaf"/>
                                 </connections>
@@ -111,7 +113,7 @@
             </objects>
             <point key="canvasLocation" x="3399.1999999999998" y="50.824587706146929"/>
         </scene>
-        <!--Video-->
+        <!--Play Video Controller-->
         <scene sceneID="4cq-cb-wcl">
             <objects>
                 <viewController storyboardIdentifier="playVideoVC" id="D9N-My-7Hg" customClass="PlayVideoController" customModule="Youtube" customModuleProvider="target" sceneMemberID="viewController">
@@ -230,7 +232,7 @@
                             <constraint firstAttribute="trailing" secondItem="FM9-H6-mGe" secondAttribute="trailing" id="wnw-9q-JhQ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Video" id="wae-cL-pS0"/>
+                    <navigationItem key="navigationItem" id="wae-cL-pS0"/>
                     <connections>
                         <outlet property="discVideoLabel" destination="ge3-fo-XTU" id="MfT-fF-11t"/>
                         <outlet property="dislikeCountLabel" destination="xYp-5q-GWg" id="GN0-Sb-WXR"/>

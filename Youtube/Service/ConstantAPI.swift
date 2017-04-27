@@ -10,12 +10,15 @@ import UIKit
 
 struct ConstanAPI {
     static let base_api_url = "https://www.googleapis.com/youtube/v3"
+    static let keyAPI = "AIzaSyAT2g4I-H7w7kQ2fKJHwS956Kwu271xO6M"
     
     struct APIPath{
         static let search     = "/search"
         static let activities = "/activities"
         static let channels   = "/channels"
         static let videos     = "/videos"
+        static let liveBroadcasts = "/liveBroadcasts"
+        static let liveStreams = "/liveStreams"
     }
 }
 

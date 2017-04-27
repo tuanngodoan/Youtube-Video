@@ -38,7 +38,7 @@ class ContentManager: NSObject {
         let qParam = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         print("search",qParam!)
         
-        let params = ["part":"snippet","q":qParam!,"type":"video","key":"AIzaSyC5yf36ZlGt19iyn9wVWaZY2H02Jsg03Vw"]
+        let params = ["part":"snippet","q":qParam!,"type":"video","key":ConstanAPI.keyAPI,"maxResults":"20","regionCode":"VN"]
         
        
         manager.get(url, parameters: params, progress: nil, success: { (task, responseObject) in
@@ -55,7 +55,7 @@ class ContentManager: NSObject {
     func getStatisticVideo(idVideo: String,completion: @escaping (_ dataJson: NSDictionary?, _ error: Error?)->(Void)) -> Void{
         let url = ConstanAPI.base_api_url.appending(ConstanAPI.APIPath.videos)
 
-        let params = ["part":"statistics","id":idVideo,"key":"AIzaSyC5yf36ZlGt19iyn9wVWaZY2H02Jsg03Vw"]
+        let params = ["part":"statistics","id":idVideo,"key":ConstanAPI.keyAPI]
         //DispatchQueue.global().async {
             self.manager.get(url, parameters: params, progress: nil, success: { (task, responseObject) in
                 
@@ -75,7 +75,7 @@ class ContentManager: NSObject {
         print("id Channel",idChannel)
         
         
-        let params = ["part":"snippet,statistics", "id":idChannel,"key":"AIzaSyC5yf36ZlGt19iyn9wVWaZY2H02Jsg03Vw"]
+        let params = ["part":"snippet,statistics", "id":idChannel,"key":ConstanAPI.keyAPI]
         manager.get(url, parameters: params, progress: nil, success: { (task, responseObject) in
             
                 let dataChannel = responseObject as! NSDictionary

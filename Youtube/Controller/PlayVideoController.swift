@@ -30,7 +30,8 @@ class PlayVideoController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
         DispatchQueue.global().sync {
-            self.playVideoView.load(withVideoId: self.idVideo)
+            self.playVideoView.load(withVideoId: self.idVideo+"/live")
+            self.playVideoView.playVideo()
             DispatchQueue.main.async {
                 self.loadInfo()
             }

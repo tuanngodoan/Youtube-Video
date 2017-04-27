@@ -57,21 +57,6 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         }
     }
     
-//    func getStatisticVideo(idVideo:String){
-//        
-//            service.getStatisticVideo(idVideo: idVideo) { (dataDict, error) -> (Void) in
-//                if error == nil {
-//                    
-//                    guard let items = dataDict![ParamAPI.items] as? [NSDictionary] else {return}
-//                    guard let item = items[0] as? NSDictionary else {return}
-//                    guard let statisDict = item[ParamAPI.statistics] as? NSDictionary else {return}
-//                    print(statisDict)
-//                    self.statisticVideo = Statistics(dataDict: statisDict)
-//                    print(self.statisticVideo.viewCount)
-//                }
-//        }
-//    }
-    
     func getChannel(id:String){
         DispatchQueue.global().sync {
             self.service.getChannelInfo(idChannel: id) { (channelDict, error) -> (Void) in

@@ -6,5 +6,5 @@ target ‘Youtube’ do
   use_frameworks!
 
     pod ‘youtube-ios-player-helper’
-    pod 'AFNetworking’, '~> 3.0'
+    pod 'AFNetworking’, '~> 3.0'	
 end

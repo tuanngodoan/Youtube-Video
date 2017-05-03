@@ -8,7 +8,7 @@
 
 import UIKit
 import youtube_ios_player_helper
-
+import AVFoundation
 
 class PlayVideoController: UIViewController {
     @IBOutlet weak var playVideoView: YTPlayerView!

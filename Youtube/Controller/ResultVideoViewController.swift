@@ -29,17 +29,13 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 204/255, green: 24/255, blue: 30/255, alpha: 0.8)
         
-        getSearch(searchText: "us&uk")
-        //        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShown), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
+        getSearch(searchText: "pewpew")
+        
         
         //let playerVars:Dictionary = ["playsinline":1]
         //playerView.load(withVideoId: "M7lc1UVf-VE", playerVars: playerVars)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     @IBAction func searchButton(_ sender: Any) {
         searchTextField.text = ""
@@ -105,7 +101,9 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
-        self.pushVCPlayVideo(video: self.searchVideo.itemsArr[indexPath.row])
+        //self.pushVCPlayVideo(video: self.searchVideo.itemsArr[indexPath.row])
+        let videoLauncher = VideoLauncher()
+        videoLauncher.showVideoPlayer()
     }
     
     func pushVCPlayVideo(video:Items){

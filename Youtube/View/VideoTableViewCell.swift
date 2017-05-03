@@ -18,6 +18,8 @@ class VideoTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        thumbImage.frame = CGRect(x: 0, y: 0, width:  self.frame.width, height:  self.frame.width * 9 / 16)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

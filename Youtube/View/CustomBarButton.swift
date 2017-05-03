@@ -18,7 +18,7 @@ open class CustomBarButton: UIBarButtonItem {
     func customUserBarButton(){
         let button:UIButton = UIButton(type: UIButtonType.custom)
         
-        button.setImage(UIImage(named: "user.png"), for: .normal)
+        button.setImage(UIImage(named: "account"), for: .normal)
         
         button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         

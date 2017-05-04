@@ -36,6 +36,11 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         //playerView.load(withVideoId: "M7lc1UVf-VE", playerVars: playerVars)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     
     @IBAction func searchButton(_ sender: Any) {
         searchTextField.text = ""
@@ -89,21 +94,26 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         cell.descriptionLabel.text = searchVideo.itemsArr[indexPath.row].snippet?.channelTitle!
 
         // thumb video
-        var url = URL(string: searchVideo.itemsArr[indexPath.row].snippet.thumb.urlImag)
-        var data = try? Data(contentsOf: url!)
-        cell.thumbImage.image = UIImage(data: data!)
         
-        // avataChannel
-        //let idChannel = searchVideo.itemsArr[indexPath.row].snippet.channelID
-        
+        DispatchQueue.global().async {
+            let url = URL(string: self.searchVideo.itemsArr[indexPath.row].snippet.thumb.urlImag)
+            let data = try? Data(contentsOf: url!)
+            print("load in background")
+            DispatchQueue.main.async {
+                cell.thumbImage.image = UIImage(data: data!)
+            }
+        }
+        print("Cell")
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
-        //self.pushVCPlayVideo(video: self.searchVideo.itemsArr[indexPath.row])
-        let videoLauncher = VideoLauncher()
-        videoLauncher.showVideoPlayer()
+        self.pushVCPlayVideo(video: self.searchVideo.itemsArr[indexPath.row])
+//        let videoLauncher = VideoLauncher()
+//        videoLauncher.showVideoPlayer()
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func pushVCPlayVideo(video:Items){
@@ -111,8 +121,6 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "playVideoVC") as? PlayVideoController{
             vc.idVideo = video.iD.videoId
             vc.titleVideoText = video.snippet.title
-            vc.discVideoText = video.snippet.descriptionsVideo
-            //vc.statisticVideo = self.statisticVideo
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

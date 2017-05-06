@@ -37,9 +37,9 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
 
 
     @IBOutlet weak var playVideoView: YTPlayerView!
-   // @IBOutlet weak var playVideoWebView:UIWebView!
+    @IBOutlet weak var playVideoWebView:UIWebView!
     @IBOutlet weak var titleVideoLabel:UILabel!
-    //@IBOutlet weak var discVideoLabel:UITextView!
+    @IBOutlet weak var discVideoLabel:UITextView!
     @IBOutlet weak var viewCountLabel:UILabel!
     @IBOutlet weak var likeCountLabel:UILabel!
     @IBOutlet weak var dislikeCountLabel:UILabel!
@@ -69,15 +69,14 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
         playVideoView.delegate = self
         
         playVideoView.setPlaybackQuality(.HD720)
+        self.navigationController?.isNavigationBarHidden = true
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        
+        self.navigationController?.isNavigationBarHidden = true
     }
+    
 
     func loadVideo(videoID: String){
         
@@ -101,7 +100,7 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
         self.service.getStatisticVideo(idVideo: self.idVideo) { (dataDict, error) -> (Void) in
             self.statisticVideo = Statistics(dataDict: dataDict!)
             print(dataDict!)
-            self.updateUI()
+            //self.updateUI()
         }
     }
     
@@ -153,7 +152,7 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
         
             let width = self.view.frame.width * 4 / 5
             let height = width * 9 / 16
-            self.playVideoView.frame = CGRect(x: self.view.frame.width - 305, y: self.view.frame.height - 200, width: width, height: height)
+            self.playVideoView.frame = CGRect(x: self.view.frame.width - 305, y: self.view.frame.height - 250, width: width, height: height)
             
         }, completion: { (completion) in
             
@@ -177,7 +176,7 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
             
             let width = self.view.frame.width * 4 / 5
             let height = width * 9 / 16
-            self.playVideoView.frame = CGRect(x:  -305, y: self.view.frame.height - 200, width: width, height: height)
+            self.playVideoView.frame = CGRect(x:  600, y: self.view.frame.height - 250, width: width, height: height)
             
         }, completion: { (completion) in
             self.navigationController?.popViewController(animated: true)
@@ -225,9 +224,34 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        var cellResult = UITableViewCell()
         
-        return cell
+        switch indexPath.row {
+        case 0:
+            
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath)
+            cellResult = headerCell
+            break
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            cellResult = cell
+            break
+        }
+        
+        return cellResult
     }
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height:CGFloat!
+        
+        switch indexPath.row {
+        case 0:
+            height = 192
+            break
+        default:
+            height = 80
+            break
+        }
+        return height
+    }
 }

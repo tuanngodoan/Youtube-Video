@@ -8,8 +8,11 @@
 
 import Foundation
 import AFNetworking
+import AppAuth
+import Google
 
 class ContentManager: NSObject {
+    
     enum httpmethod {
         case GET
         case POST
@@ -18,21 +21,17 @@ class ContentManager: NSObject {
     static let sharedInstant = ContentManager()
     let manager:AFHTTPSessionManager!
     
+ 
     override init() {
         manager = AFHTTPSessionManager()
     }
     
+    
+    
+    
     //func getVideoInfo()
     
     func getSearchInfo(searchText: String,completion: @escaping (_ dataJson: NSDictionary?, _ error: Error?)->(Void)) -> Void {
-        
-//        let url = ConstanAPI.base_api_url
-//        
-//        if Video {
-//        }else{
-//            Channel
-//        }
-// gộp thành 1 hàm
         
         let url = ConstanAPI.base_api_url.appending(ConstanAPI.APIPath.search)
         let qParam = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)

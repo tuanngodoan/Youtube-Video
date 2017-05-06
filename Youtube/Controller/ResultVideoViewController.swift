@@ -14,6 +14,7 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var searchTextField: UITextField!
+    
 
     let service = ContentManager.sharedInstant
     
@@ -31,7 +32,6 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         
         getSearch(searchText: "pewpew")
         
-        
         //let playerVars:Dictionary = ["playsinline":1]
         //playerView.load(withVideoId: "M7lc1UVf-VE", playerVars: playerVars)
     }
@@ -47,6 +47,16 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         searchTextField.becomeFirstResponder()
     }
     
+    
+    @IBAction func accountButton(_ sender: Any){
+        
+        print("taptaptap")
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "loginVC") as? LoginGGViewController{
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+            
+    }
     
     func getSearch(searchText: String){
         
@@ -81,6 +91,8 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         return true;
     }
     
+    
+    /// Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  searchVideo.itemsArr.count
     }
@@ -98,12 +110,13 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         DispatchQueue.global().async {
             let url = URL(string: self.searchVideo.itemsArr[indexPath.row].snippet.thumb.urlImag)
             let data = try? Data(contentsOf: url!)
-            print("load in background")
+            
             DispatchQueue.main.async {
                 cell.thumbImage.image = UIImage(data: data!)
             }
         }
-        print("Cell")
+        
+        
         return cell
     }
     
@@ -124,6 +137,20 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        
+//        if scrollView.contentOffset.y < 10 {
+//            UIView.animate(withDuration: 0.2, animations: {
+//                self.navigationController?.isNavigationBarHidden = false
+//            })
+//        }else{
+//            UIView.animate(withDuration: 0.3, animations: {
+//                self.navigationController?.isNavigationBarHidden = true
+//            })
+//        }
+//    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

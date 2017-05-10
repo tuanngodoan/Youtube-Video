@@ -47,6 +47,10 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key></key>
+		<false/>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<false/>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>

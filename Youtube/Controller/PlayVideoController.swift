@@ -38,14 +38,11 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var playVideoView: YTPlayerView!
     @IBOutlet weak var playVideoWebView:UIWebView!
-    @IBOutlet weak var titleVideoLabel:UILabel!
-    @IBOutlet weak var discVideoLabel:UITextView!
-    @IBOutlet weak var viewCountLabel:UILabel!
-    @IBOutlet weak var likeCountLabel:UILabel!
-    @IBOutlet weak var dislikeCountLabel:UILabel!
+    
     
     var idVideo:String!
     var titleVideoText:String!
+    var channel:ChannelModel!
     var statisticVideo:Statistics!
     let service = ContentManager.sharedInstant
     
@@ -64,11 +61,9 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
         self.state = .fullScreen
         
         loadVideo(videoID: idVideo)
-        self.loadInfo()
-        
-        playVideoView.delegate = self
-        
-        playVideoView.setPlaybackQuality(.HD720)
+
+        //playVideoView.delegate = self
+        //playVideoView.setPlaybackQuality(.HD720)
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -88,10 +83,7 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func updateUI(){
         
-        titleVideoLabel.text = titleVideoText
-        self.viewCountLabel.text = numberCount(numberConvert: self.statisticVideo.viewCount) + " lượt xem"
-        self.likeCountLabel.text = numberCount(numberConvert: self.statisticVideo.likeCount)
-        self.dislikeCountLabel.text = numberCount(numberConvert: self.statisticVideo.dislikeCount)
+        
 
     }
     
@@ -100,7 +92,7 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
         self.service.getStatisticVideo(idVideo: self.idVideo) { (dataDict, error) -> (Void) in
             self.statisticVideo = Statistics(dataDict: dataDict!)
             print(dataDict!)
-            //self.updateUI()
+            
         }
     }
     
@@ -124,17 +116,17 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
             switch self.state {
             case .fullScreen:
                 finalState = .minimized
-                minimize()
+                //minimize()
             break
             case .minimized:
                 if self.direction == .left{
                     print("lefttttt")
                     finalState = .hidden
-                    hidden()
+                    //hidden()
                 }else{
                     print("uppp")
                     finalState = .fullScreen
-                    fullScreen()
+                    //fullScreen()
                 }
             break
             default:
@@ -229,11 +221,35 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
         switch indexPath.row {
         case 0:
             
-            let headerCell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath)
+            let headerCell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath) as! InfoVideoTableViewCell
+            
+            headerCell.TitleVideoLabel.text = titleVideoText
+            
+            self.service.getStatisticVideo(idVideo: self.idVideo) { (dataDict, error) -> (Void) in
+            
+                    self.statisticVideo = Statistics(dataDict: dataDict!)
+                    print(dataDict!)
+                    headerCell.viewCountLabel.text = self.numberCount(numberConvert: self.statisticVideo.viewCount) + " lượt xem"
+                    headerCell.likeCountLabel.text = self.numberCount(numberConvert: self.statisticVideo.likeCount)
+                    headerCell.dislikeCountLabel.text = self.numberCount(numberConvert: self.statisticVideo.dislikeCount)
+                    headerCell.channelTitleLabel.text = self.channel.title
+                    headerCell.numSubLabel.text = self.numberCount(numberConvert: self.channel.subsctipCount) + " đăng kí"
+            
+                    //headerCell.channelImageView.layer.cornerRadius = headerCell.frame.height * 0.2
+                    headerCell.channelImageView.image = self.channel.imageChannel
+                    headerCell.channelImageView.layer.cornerRadius = headerCell.channelImageView.frame.width / 2
+                    headerCell.channelImageView.clipsToBounds = true
+            }
+            
             cellResult = headerCell
             break
+            
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SuggestVideoTableViewCell
+            
+            
+            
+            
             cellResult = cell
             break
         }

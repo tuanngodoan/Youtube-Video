@@ -46,13 +46,14 @@ class Snippet: NSObject {
     
     var publishedAt:  String!
     var channelID:String!
-    var urlImageID  = String()
+    var channelAvatar:UIImage!
     var title:        String!
     var descriptionsVideo:  String!
     var thumb: Thumbnails!
     var channelTitle: String!
     var liveBroadcastContent:String!
     
+    let server = ContentManager.sharedInstant
     
     init(dict: NSDictionary) {
 
@@ -62,6 +63,7 @@ class Snippet: NSObject {
             if let chanID = dict[ParamAPI.channelId] as? String{
                 self.channelID = chanID
             }
+        
             if let title = dict[ParamAPI.title] as? String {
                 self.title = title
             }
@@ -138,6 +140,8 @@ class VideoModel: NSObject {
     var regionCode:String!
     var page:pageInfo!
     var itemsArr:[Items]!
+
+    
     
     init(videoDict:NSDictionary){
         
@@ -200,25 +204,28 @@ class Statistics:NSObject{
 }
 
 class ChannelModel: NSObject {
-    
-    var descrip: String!
-    //var stastic:Statistics!
-    var urlImage:String!
+    var title:String!
+    var subsctipCount:String!
+    var imageChannel: UIImage!
     init(channelItemsDict: NSDictionary) {
         
-        guard let desc = channelItemsDict[ParamAPI.description] as? String else {return}
-        self.descrip = desc
-        
         guard let staDict = channelItemsDict[ParamAPI.statistics] as? NSDictionary else {return}
-        //self.stastic = Statistics(statisticDict: staDict)
+        guard let subCount = staDict[ParamAPI.subscriberCount] as? String else {return}
+        self.subsctipCount = subCount
         
-        guard let items = channelItemsDict[ParamAPI.items] as? NSDictionary else {return }
-        guard let snippet = items[ParamAPI.snippet] as? NSDictionary else {return}
+        guard let snippet = channelItemsDict[ParamAPI.snippet] as? NSDictionary else {return}
+        
+        guard let title = snippet[ParamAPI.title] as? String else {return}
+        self.title = title
+        
         guard let thumb = snippet[ParamAPI.thumbnails] as? NSDictionary else {return}
-        guard let high = thumb[ParamAPI.medium] as? NSDictionary else {return}
-        guard let url = high[ParamAPI.urlImg] as? String else {return}
-        self.urlImage = url
-        print(url)
+        guard let medium = thumb[ParamAPI.medium] as? NSDictionary else {return}
+        guard let url = medium[ParamAPI.urlImg] as? String else {return}
+       
+        let urlImage = URL(string: url)
+        let data = try? Data(contentsOf: urlImage!)
+        let image = UIImage(data: data!)
+        self.imageChannel = image
         
     }
 }

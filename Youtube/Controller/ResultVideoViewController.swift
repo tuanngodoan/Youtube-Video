@@ -25,7 +25,7 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     var urlImage:String!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.searchTextField.delegate = self
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 204/255, green: 24/255, blue: 30/255, alpha: 0.8)
@@ -69,13 +69,12 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     }
     
     func getChannel(id:String){
-        DispatchQueue.global().sync {
+  
             self.service.getChannelInfo(idChannel: id) { (channelDict, error) -> (Void) in
                 if error == nil{
                     self.channel = ChannelModel(channelItemsDict: channelDict!)
                 }
             }
-        }
     }
     
     func loadVideoCellTable(){
@@ -121,7 +120,8 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
+        
+        
         self.pushVCPlayVideo(video: self.searchVideo.itemsArr[indexPath.row])
 //        let videoLauncher = VideoLauncher()
 //        videoLauncher.showVideoPlayer()
@@ -134,7 +134,17 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "playVideoVC") as? PlayVideoController{
             vc.idVideo = video.iD.videoId
             vc.titleVideoText = video.snippet.title
-            self.navigationController?.pushViewController(vc, animated: true)
+            
+            self.service.getChannelInfo(idChannel: video.snippet.channelID) { (channelDict, error) -> (Void) in
+                if error == nil{
+                    
+                    guard let items = channelDict?[ParamAPI.items] as? [Any] else {return}
+                    guard let dict = items[0] as? NSDictionary else {return}
+                    self.channel = ChannelModel(channelItemsDict: dict)
+                    vc.channel = self.channel
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
         }
     }
     

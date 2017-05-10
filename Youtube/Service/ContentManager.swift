@@ -71,8 +71,6 @@ class ContentManager: NSObject {
     func getChannelInfo(idChannel: String,completion: @escaping (_ dataJson: NSDictionary?, _ error: Error?)->(Void)) -> Void {
         
         let url = ConstanAPI.base_api_url.appending(ConstanAPI.APIPath.channels)
-        print("id Channel",idChannel)
-        
         
         let params = ["part":"snippet,statistics", "id":idChannel,"key":ConstanAPI.keyAPI]
         manager.get(url, parameters: params, progress: nil, success: { (task, responseObject) in
@@ -86,6 +84,23 @@ class ContentManager: NSObject {
                 print(error)
                 completion(nil, error)
         }
+    }
+    
+    func getActivities(channel: String, completion: @escaping (_ dataJson: NSDictionary?,_ error: Error?)->(Void)){
+        let url = ConstanAPI.base_api_url.appending(ConstanAPI.APIPath.activities)
+        
+        let param = ["part":"snippet","channelId":channel,"maxResults":"20","regionCode":"VN", "key": ConstanAPI.keyAPI]
+        
+        manager.get(url, parameters: param, progress: nil, success: { (task, responseObj) in
+            //
+            let data = responseObj as! NSDictionary
+            completion(data, nil)
+            
+        }) { (task, error) in
+            print("Error ", error.localizedDescription)
+            completion(nil, error)
+        }
+        
     }
     
     

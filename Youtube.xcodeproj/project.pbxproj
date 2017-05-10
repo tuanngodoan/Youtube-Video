@@ -17,6 +17,8 @@
 		305577381EB045BC000C1D91 /* PlayVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577351EB045BC000C1D91 /* PlayVideoController.swift */; };
 		305577391EB045BC000C1D91 /* ResultVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577361EB045BC000C1D91 /* ResultVideoViewController.swift */; };
 		3061F98D1EBC162B000CE6A4 /* LoginGGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3061F98C1EBC162B000CE6A4 /* LoginGGViewController.swift */; };
+		306B65431EC0402400960B16 /* TabarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B65421EC0402400960B16 /* TabarViewController.swift */; };
+		306B65471EC0464200960B16 /* TrendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B65461EC0464200960B16 /* TrendingTableViewCell.swift */; };
 		30A4DB421EBC562C002AE639 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30A4DB411EBC562C002AE639 /* GoogleService-Info.plist */; };
 		30B5656C1EB969100036C5E8 /* VideoLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5656B1EB969100036C5E8 /* VideoLauncher.swift */; };
 		30B5EFF71EAFDE2300DE1202 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B5EFF61EAFDE2300DE1202 /* AppDelegate.swift */; };
@@ -24,6 +26,9 @@
 		30B5EFFE1EAFDE2300DE1202 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30B5EFFD1EAFDE2300DE1202 /* Assets.xcassets */; };
 		30B5F0011EAFDE2300DE1202 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30B5EFFF1EAFDE2300DE1202 /* LaunchScreen.storyboard */; };
 		30E843791EBC59D000A72780 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 30E843781EBC59CF00A72780 /* Podfile */; };
+		30EF8B941EBECEDF008DE835 /* TrendingVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EF8B931EBECEDF008DE835 /* TrendingVideoViewController.swift */; };
+		30F6941E1EBDC0BF00AFDF6F /* InfoVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6941D1EBDC0BF00AFDF6F /* InfoVideoTableViewCell.swift */; };
+		30F694201EBDC1A100AFDF6F /* SuggestVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F6941F1EBDC1A100AFDF6F /* SuggestVideoTableViewCell.swift */; };
 		5820A460BF9CD7EF6FF9D5FD /* Pods_Youtube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C560A31400F0269388425C02 /* Pods_Youtube.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +45,8 @@
 		305577361EB045BC000C1D91 /* ResultVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultVideoViewController.swift; path = Controller/ResultVideoViewController.swift; sourceTree = "<group>"; };
 		3061F98B1EBC0EF5000CE6A4 /* Youtube-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Youtube-Bridging-Header.h"; sourceTree = "<group>"; };
 		3061F98C1EBC162B000CE6A4 /* LoginGGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginGGViewController.swift; path = Controller/LoginGGViewController.swift; sourceTree = "<group>"; };
+		306B65421EC0402400960B16 /* TabarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabarViewController.swift; path = Controller/TabarViewController.swift; sourceTree = "<group>"; };
+		306B65461EC0464200960B16 /* TrendingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingTableViewCell.swift; sourceTree = "<group>"; };
 		30A4DB411EBC562C002AE639 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		30B5656B1EB969100036C5E8 /* VideoLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoLauncher.swift; path = Controller/VideoLauncher.swift; sourceTree = "<group>"; };
 		30B5EFF31EAFDE2300DE1202 /* Youtube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Youtube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +56,9 @@
 		30B5F0001EAFDE2300DE1202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30B5F0021EAFDE2300DE1202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30E843781EBC59CF00A72780 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		30EF8B931EBECEDF008DE835 /* TrendingVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingVideoViewController.swift; sourceTree = "<group>"; };
+		30F6941D1EBDC0BF00AFDF6F /* InfoVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfoVideoTableViewCell.swift; path = View/InfoVideoTableViewCell.swift; sourceTree = "<group>"; };
+		30F6941F1EBDC1A100AFDF6F /* SuggestVideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SuggestVideoTableViewCell.swift; path = View/SuggestVideoTableViewCell.swift; sourceTree = "<group>"; };
 		C21B459CC6460B9614A79310 /* Pods-Youtube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Youtube.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Youtube/Pods-Youtube.debug.xcconfig"; sourceTree = "<group>"; };
 		C560A31400F0269388425C02 /* Pods_Youtube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Youtube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -80,6 +90,9 @@
 				305577241EB04565000C1D91 /* CustomBarButton.swift */,
 				305577251EB04565000C1D91 /* CustomNavigationBar.swift */,
 				305577261EB04565000C1D91 /* VideoTableViewCell.swift */,
+				30F6941D1EBDC0BF00AFDF6F /* InfoVideoTableViewCell.swift */,
+				30F6941F1EBDC1A100AFDF6F /* SuggestVideoTableViewCell.swift */,
+				306B65461EC0464200960B16 /* TrendingTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -109,6 +122,8 @@
 				305577351EB045BC000C1D91 /* PlayVideoController.swift */,
 				30B5656B1EB969100036C5E8 /* VideoLauncher.swift */,
 				3061F98C1EBC162B000CE6A4 /* LoginGGViewController.swift */,
+				30EF8B931EBECEDF008DE835 /* TrendingVideoViewController.swift */,
+				306B65421EC0402400960B16 /* TabarViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -286,14 +301,19 @@
 			files = (
 				305577381EB045BC000C1D91 /* PlayVideoController.swift in Sources */,
 				30B5656C1EB969100036C5E8 /* VideoLauncher.swift in Sources */,
+				30F694201EBDC1A100AFDF6F /* SuggestVideoTableViewCell.swift in Sources */,
 				305577281EB04565000C1D91 /* CustomNavigationBar.swift in Sources */,
 				3055772E1EB04586000C1D91 /* ContentManager.swift in Sources */,
 				3061F98D1EBC162B000CE6A4 /* LoginGGViewController.swift in Sources */,
 				3055772D1EB04586000C1D91 /* ConstantAPI.swift in Sources */,
+				30EF8B941EBECEDF008DE835 /* TrendingVideoViewController.swift in Sources */,
 				305577331EB045A8000C1D91 /* VideoModel.swift in Sources */,
 				305577291EB04565000C1D91 /* VideoTableViewCell.swift in Sources */,
+				30F6941E1EBDC0BF00AFDF6F /* InfoVideoTableViewCell.swift in Sources */,
+				306B65471EC0464200960B16 /* TrendingTableViewCell.swift in Sources */,
 				305577271EB04565000C1D91 /* CustomBarButton.swift in Sources */,
 				30B5EFF71EAFDE2300DE1202 /* AppDelegate.swift in Sources */,
+				306B65431EC0402400960B16 /* TabarViewController.swift in Sources */,
 				305577321EB045A8000C1D91 /* ChannelModel.swift in Sources */,
 				305577391EB045BC000C1D91 /* ResultVideoViewController.swift in Sources */,
 			);

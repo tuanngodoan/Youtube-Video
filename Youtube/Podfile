@@ -8,5 +8,4 @@ target ‘Youtube’ do
     pod ‘youtube-ios-player-helper’
     pod 'AFNetworking’
     pod 'AppAuth'
-    pod 'Google/SignIn'
 end

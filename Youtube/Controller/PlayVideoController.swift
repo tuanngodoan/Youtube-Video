@@ -24,15 +24,6 @@ enum Direction {
     case none
 }
 
-//class ytpView:YTPlayerView{
-//    
-//    override init(frame: CGRect) {
-//        
-//    }
-//    
-//    
-//}
-
 class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDataSource,UIGestureRecognizerDelegate,YTPlayerViewDelegate {
 
 
@@ -40,6 +31,7 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var playVideoWebView:UIWebView!
     
     
+    var  videos:VideoModel!
     var idVideo:String!
     var titleVideoText:String!
     var channel:ChannelModel!
@@ -70,13 +62,14 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
     
 
     func loadVideo(videoID: String){
         
         
-        let varParam = ["playsinline" : "1", "rel":"0", "showinfo":"0","color":"white","controls":"1","fs":"0"]
+        let varParam = ["playsinline" : "1", "rel":"0"]
         
         playVideoView.load(withVideoId: videoID, playerVars: varParam)
     }
@@ -117,12 +110,13 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
             case .fullScreen:
                 finalState = .minimized
                 //minimize()
+                hidden()
             break
             case .minimized:
                 if self.direction == .left{
                     print("lefttttt")
                     finalState = .hidden
-                    //hidden()
+                    hidden()
                 }else{
                     print("uppp")
                     finalState = .fullScreen
@@ -171,6 +165,7 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
             self.playVideoView.frame = CGRect(x:  600, y: self.view.frame.height - 250, width: width, height: height)
             
         }, completion: { (completion) in
+            self.playVideoView.stopVideo()
             self.navigationController?.popViewController(animated: true)
         })
         
@@ -211,7 +206,7 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
     ///
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 5
+        return videos.itemsArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -247,9 +242,17 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SuggestVideoTableViewCell
             
+            cell.videoTitleLabel.text = videos.itemsArr[indexPath.row].snippet.title
+            cell.titleChannelLabel.text = videos.itemsArr[indexPath.row].snippet.channelTitle
             
-            
-            
+            DispatchQueue.global().async {
+                let url = URL(string: self.videos.itemsArr[indexPath.row].snippet.thumb.urlImag)
+                let data = try? Data(contentsOf: url!)
+                
+                DispatchQueue.main.async {
+                    cell.thumbImageVideoImageView.image = UIImage(data: data!)
+                }
+            }
             cellResult = cell
             break
         }
@@ -270,4 +273,9 @@ class PlayVideoController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         return height
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        playVideoView.stopVideo()
+    }
+    
 }

@@ -24,11 +24,15 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     var idVideo:String!
     var urlImage:String!
     override func viewDidLoad() {
+        
+        print(ConstanAPI.access_tokenKey)
         super.viewDidLoad()
         
         self.searchTextField.delegate = self
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 204/255, green: 24/255, blue: 30/255, alpha: 0.8)
+        
+       // getActive()
         
         getSearch(searchText: "pewpew")
         
@@ -39,6 +43,7 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     
@@ -66,6 +71,18 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
                 self.loadVideoCellTable()
             }
         }
+    }
+    
+   func getActive(){
+        service.getVideoChannel(channel: "" , completion: { (dataJson, error) -> (Void) in
+            
+            if error == nil {
+                self.searchVideo = VideoModel(videoDict: dataJson!)
+                print(dataJson!)
+                self.loadVideoCellTable()
+            }
+            
+        })
     }
     
     func getChannel(id:String){
@@ -97,7 +114,15 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+       
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellVideo", for: indexPath) as! VideoTableViewCell
+        
+        
+        if indexPath.row == 0 {
+            cell.selectionStyle = .none
+        }
         
         //titile
         cell.titleVideoLabel.text = searchVideo.itemsArr[indexPath.row].snippet?.title!
@@ -114,7 +139,6 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
                 cell.thumbImage.image = UIImage(data: data!)
             }
         }
-        
         
         return cell
     }
@@ -134,6 +158,7 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "playVideoVC") as? PlayVideoController{
             vc.idVideo = video.iD.videoId
             vc.titleVideoText = video.snippet.title
+            vc.videos = searchVideo
             
             self.service.getChannelInfo(idChannel: video.snippet.channelID) { (channelDict, error) -> (Void) in
                 if error == nil{
@@ -149,18 +174,38 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     }
     
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        
-//        if scrollView.contentOffset.y < 10 {
-//            UIView.animate(withDuration: 0.2, animations: {
-//                self.navigationController?.isNavigationBarHidden = false
-//            })
-//        }else{
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.navigationController?.isNavigationBarHidden = true
-//            })
-//        }
-//    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView.contentOffset.y < 1 {
+            //UIView.animate(withDuration: 0.2, animations: {
+                self.navigationController?.isNavigationBarHidden = false
+            //})
+        }else{
+           UIView.animate(withDuration: 0.5, animations: {
+                self.navigationController?.isNavigationBarHidden = true
+           })
+        }
+        
+    
+        var offset = scrollView.contentOffset
+        var bounds = scrollView.bounds
+        var size   = scrollView.contentSize
+        var inset  = scrollView.contentInset
+        var y = offset.y + bounds.size.height - inset.bottom
+        var h = size.height;
+        // NSLog(@"offset: %f", offset.y);
+        // NSLog(@"content.height: %f", size.height);
+        // NSLog(@"bounds.height: %f", bounds.size.height);
+        // NSLog(@"inset.top: %f", inset.top);
+        // NSLog(@"inset.bottom: %f", inset.bottom);
+        // NSLog(@"pos: %f of %f", y, h);
+        
+        var reload_distance = 10
+        
+        if Int(y) > ( Int(h) + reload_distance) {
+            print("load more rows")
+        }
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

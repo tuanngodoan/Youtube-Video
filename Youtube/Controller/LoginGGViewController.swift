@@ -24,6 +24,7 @@ class LoginGGViewController: UIViewController, GIDSignInUIDelegate, OIDAuthState
     
     let kAppAuthExampleAuthStateKey = "authState";
     
+    //"https://www.googleapis.com/auth/youtube","https://www.googleapis.com/auth/youtube.force-ssl","https://www.googleapis.com/auth/youtube.readonly",
     var scopes = ["https://www.googleapis.com/auth/youtube","https://www.googleapis.com/auth/youtube.force-ssl","https://www.googleapis.com/auth/youtube.readonly",OIDScopeOpenID,OIDScopeProfile]
 
     
@@ -32,20 +33,16 @@ class LoginGGViewController: UIViewController, GIDSignInUIDelegate, OIDAuthState
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        GIDSignIn.sharedInstance().uiDelegate = self
-        createSignInButton()
-        clearAuthState()
-        //configAuth()
-        autoWithAutoCodeExchange()
-        
+        //GIDSignIn.sharedInstance().uiDelegate = self
+        //createSignInButton()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.logoutButton.frame = CGRect(x: 10, y: self.view.frame.height - 200, width: self.view.frame.width - 40, height: 30)
         self.logoutButton.setTitle("Login with Youtube/Google Account", for: .normal)
-        self.logoutButton.tintColor = UIColor.black
-        self.logoutButton.backgroundColor = UIColor.white
+        self.logoutButton.tintColor = UIColor.white
+        self.logoutButton.backgroundColor = UIColor.red
     }
 
     func createSignInButton(){
@@ -56,59 +53,8 @@ class LoginGGViewController: UIViewController, GIDSignInUIDelegate, OIDAuthState
 
     @IBAction func TapLogoutButton(_ sender: Any) {
         GIDSignIn.sharedInstance().signOut()
+        autoWithAutoCodeExchange()
     }
-
-
-    
-    
-//    
-//    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-//        if (error == nil) {
-//            
-//            let userId = user.userID                  // For client-side use only!
-//            let idToken = user.authentication.idToken // Safe to send to the server
-//            let fullName = user.profile.name
-//            let email = user.profile.email
-//            
-//            print("userID: \(String(describing: userId))")
-//            print("idToken: \(String(describing: idToken))")
-//            print("email: \(String(describing: email))")
-//            print("fullName: \(String(describing: fullName))")
-//            
-//        } else {
-//            print("\(error.localizedDescription)")
-//        }
-//    }
-//
-//    
-//    //
-//    func sign(_ signIn: GIDSignIn!, present viewController: UIViewController!) {
-//        
-//        self.present(viewController, animated: true) {
-//            
-//            // when completion
-//            // Open web signin
-//        }
-//    }
-//    
-//    func sign(_ signIn: GIDSignIn!, dismiss viewController: UIViewController!) {
-//        self.dismiss(animated: true) { 
-//            //
-//        }
-//    }
-//    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func saveState(){
         // for production usage consider using the OS Keychain instead
@@ -196,7 +142,7 @@ class LoginGGViewController: UIViewController, GIDSignInUIDelegate, OIDAuthState
                 if authState != nil{
                     self.assignAuthState(authState)
                     print("Access token: \(authState!.lastTokenResponse!.accessToken!)")
-                    print(authState!.lastTokenResponse!.accessToken!)
+                    ConstanAPI.access_tokenKey = authState!.lastTokenResponse!.accessToken!
                 }
                 else{
                     print("Authorization error: \(error!.localizedDescription)")

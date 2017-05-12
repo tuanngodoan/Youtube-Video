@@ -12,8 +12,12 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
     
     @IBOutlet weak var tableView:UITableView!
     
-    let server = ContentManager.sharedInstant
+    let service = ContentManager.sharedInstant
+    
     var videos:VideoModel!
+    var channel:ChannelModel!
+    var idVideo:String!
+    var urlImage:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +28,8 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
         super.viewWillAppear(animated)
         
         self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+        
     }
 
     @IBAction func homeButton(_ sender: UIButton){
@@ -34,16 +40,26 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
       
     }
     @IBAction func liveButton(_ sender: UIButton){
-        loadTrending(channelID: ConstanAPI.idLive)
+        loadLive()
     }
     
     func loadTrending(channelID: String){
        
-        server.getActivities(channel: channelID) { (dictVideo, error) -> (Void) in
+        service.getVideoChannel(channel: channelID) { (dictVideo, error) -> (Void) in
             
             if error == nil {
                 self.videos = VideoModel(videoDict: dictVideo!)
                 self.refeshTableView()
+            }
+        }
+    }
+    
+    func loadLive(){
+        service.getSearchInfo(searchText: "live") { (jsonData, error) -> (Void) in
+            if error == nil {
+                self.videos = VideoModel(videoDict: jsonData!)
+                self.refeshTableView()
+                
             }
         }
     }
@@ -61,36 +77,60 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "trendingCell", for: indexPath) as! TrendingTableViewCell
+        var cellResult = UITableViewCell()
         
-        cell.backgroundColor = UIColor.white
-        cell.titleVideoLabel.text = videos.itemsArr[indexPath.row].snippet.title
-        //cell.titleChannelLabel.text = videos.itemsArr[indexPath.row].snippet.channelTitle
-        
-        
-        
-        DispatchQueue.global().async {
-            let url = URL(string: self.videos.itemsArr[indexPath.row].snippet.thumb.urlImag)
-            let data = try? Data(contentsOf: url!)
+        switch indexPath.row {
+        case 0:
+            break
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "trendingCell", for: indexPath) as! TrendingTableViewCell
             
-            DispatchQueue.main.async {
-                cell.thumbImageView.image = UIImage(data: data!)
+            cell.backgroundColor = UIColor.white
+            cell.titleVideoLabel.text = videos.itemsArr[indexPath.row].snippet.title
+            //cell.titleChannelLabel.text = videos.itemsArr[indexPath.row].snippet.channelTitle
+            
+            
+            
+            DispatchQueue.global().async {
+                let url = URL(string: self.videos.itemsArr[indexPath.row].snippet.thumb.urlImag)
+                let data = try? Data(contentsOf: url!)
+                
+                DispatchQueue.main.async {
+                    cell.thumbImageView.image = UIImage(data: data!)
+                }
             }
+            cellResult = cell
+            break
+            
         }
         
-        return cell
+        return cellResult
     }
     
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        pushVCPlayVideo(video: self.videos.itemsArr[indexPath.row])
     }
-    */
+    
+    func pushVCPlayVideo(video:Items){
+        
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "playVideoVC") as? PlayVideoController{
+            
+            vc.idVideo = video.iD.videoId
+            
+            vc.titleVideoText = video.snippet.title
+            
+            self.service.getChannelInfo(idChannel: video.snippet.channelID) { (channelDict, error) -> (Void) in
+                if error == nil{
+                    
+                    guard let items = channelDict?[ParamAPI.items] as? [Any] else {return}
+                    guard let dict = items[0] as? NSDictionary else {return}
+                    self.channel = ChannelModel(channelItemsDict: dict)
+                    vc.channel = self.channel
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+        }
+    }
 
 }

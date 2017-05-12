@@ -11,7 +11,7 @@ import UIKit
 struct ConstanAPI {
     static let base_api_url = "https://www.googleapis.com/youtube/v3"
     static let keyAPI = "AIzaSyAT2g4I-H7w7kQ2fKJHwS956Kwu271xO6M"
-    static let access_tokenKey = "ya29.GltGBJZz2PF02tZz1hkz8ckE-q4haCayivWu2OvXWPWqeZBxVBVEIcJ4BYoB601ikPnpLSfDy51jQAJVoaW3lmXczxG2cJR-D_3QSt4nqWorAL25SwACpj9iyrT4ya29.GltGBJZz2PF02tZz1hkz8ckE-q4haCayivWu2OvXWPWqeZBxVBVEIcJ4BYoB601ikPnpLSfDy51jQAJVoaW3lmXczxG2cJR-D_3QSt4nqWorAL25SwACpj9iyrT4"
+    static var access_tokenKey = ""
     //static let access = "access_token=\(access_tokenKey)&mine=true"
     static let idLive = "UC4R8DWoMoI7CAwX8_LjQHig"
     static let idMusic = "UC-9-kyTW8ZkZNDHQJ6FgpwQ"

@@ -16,6 +16,7 @@
 		305577331EB045A8000C1D91 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577311EB045A8000C1D91 /* VideoModel.swift */; };
 		305577381EB045BC000C1D91 /* PlayVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577351EB045BC000C1D91 /* PlayVideoController.swift */; };
 		305577391EB045BC000C1D91 /* ResultVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577361EB045BC000C1D91 /* ResultVideoViewController.swift */; };
+		3060745F1EC317160093AC5F /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3060745E1EC317160093AC5F /* ChannelTableViewCell.swift */; };
 		3061F98D1EBC162B000CE6A4 /* LoginGGViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3061F98C1EBC162B000CE6A4 /* LoginGGViewController.swift */; };
 		306B65431EC0402400960B16 /* TabarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B65421EC0402400960B16 /* TabarViewController.swift */; };
 		306B65471EC0464200960B16 /* TrendingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B65461EC0464200960B16 /* TrendingTableViewCell.swift */; };
@@ -43,6 +44,7 @@
 		305577311EB045A8000C1D91 /* VideoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoModel.swift; path = Model/VideoModel.swift; sourceTree = "<group>"; };
 		305577351EB045BC000C1D91 /* PlayVideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayVideoController.swift; path = Controller/PlayVideoController.swift; sourceTree = "<group>"; };
 		305577361EB045BC000C1D91 /* ResultVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultVideoViewController.swift; path = Controller/ResultVideoViewController.swift; sourceTree = "<group>"; };
+		3060745E1EC317160093AC5F /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
 		3061F98B1EBC0EF5000CE6A4 /* Youtube-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Youtube-Bridging-Header.h"; sourceTree = "<group>"; };
 		3061F98C1EBC162B000CE6A4 /* LoginGGViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginGGViewController.swift; path = Controller/LoginGGViewController.swift; sourceTree = "<group>"; };
 		306B65421EC0402400960B16 /* TabarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TabarViewController.swift; path = Controller/TabarViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				30F6941D1EBDC0BF00AFDF6F /* InfoVideoTableViewCell.swift */,
 				30F6941F1EBDC1A100AFDF6F /* SuggestVideoTableViewCell.swift */,
 				306B65461EC0464200960B16 /* TrendingTableViewCell.swift */,
+				3060745E1EC317160093AC5F /* ChannelTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				30F694201EBDC1A100AFDF6F /* SuggestVideoTableViewCell.swift in Sources */,
 				305577281EB04565000C1D91 /* CustomNavigationBar.swift in Sources */,
 				3055772E1EB04586000C1D91 /* ContentManager.swift in Sources */,
+				3060745F1EC317160093AC5F /* ChannelTableViewCell.swift in Sources */,
 				3061F98D1EBC162B000CE6A4 /* LoginGGViewController.swift in Sources */,
 				3055772D1EB04586000C1D91 /* ConstantAPI.swift in Sources */,
 				30EF8B941EBECEDF008DE835 /* TrendingVideoViewController.swift in Sources */,

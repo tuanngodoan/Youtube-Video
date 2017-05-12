@@ -37,14 +37,14 @@ class ContentManager: NSObject {
         let qParam = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         print("search",qParam!)
         
-        let params = ["part":"snippet","q":qParam!,"type":"video","key":ConstanAPI.keyAPI,"maxResults":"20","regionCode":"VN"]
+        let params = ["part":"snippet","q":qParam!,"key": ConstanAPI.keyAPI,"maxResults":"20","regionCode":"VN","access_token":ConstanAPI.access_tokenKey,"mine":"true"]
         
        
         manager.get(url, parameters: params, progress: nil, success: { (task, responseObject) in
             
             let dataVideo = responseObject as! NSDictionary
-            completion(dataVideo,nil)
-        }) { (task, error) in
+                completion(dataVideo,nil)
+         }) { (task, error) in
             
             print(error)
             completion(nil, error)
@@ -86,10 +86,10 @@ class ContentManager: NSObject {
         }
     }
     
-    func getActivities(channel: String, completion: @escaping (_ dataJson: NSDictionary?,_ error: Error?)->(Void)){
+    func getVideoChannel(channel: String, completion: @escaping (_ dataJson: NSDictionary?,_ error: Error?)->(Void)){
         let url = ConstanAPI.base_api_url.appending(ConstanAPI.APIPath.activities)
         
-        let param = ["part":"snippet","channelId":channel,"maxResults":"20","regionCode":"VN", "key": ConstanAPI.keyAPI]
+        let param = ["part":"snippet","channelId":channel,"regionCode":"VN", "key": ConstanAPI.keyAPI]
         
         manager.get(url, parameters: param, progress: nil, success: { (task, responseObj) in
             //
@@ -103,5 +103,20 @@ class ContentManager: NSObject {
         
     }
     
-    
+    func getActivites(completion: @escaping (_ data: NSDictionary?,_ error:Error?)->(Void) ){
+        
+        let url = ConstanAPI.base_api_url.appending(ConstanAPI.APIPath.activities)
+       
+        let param = ["part":"snippet", "key": ConstanAPI.keyAPI,"mine":"true","access_token=":ConstanAPI.access_tokenKey]
+        
+        manager.get(url, parameters: param, progress: nil, success: { (task, responseObj) in
+            //
+            let data = responseObj as! NSDictionary
+            completion(data, nil)
+            
+        }) { (task, error) in
+            print("Error ", error.localizedDescription)
+            
+        }
+    }
 }

@@ -19,12 +19,9 @@ class InfoVideoTableViewCell: UITableViewCell {
     @IBOutlet weak var channelTitleLabel: UILabel!
     @IBOutlet weak var numSubLabel: UILabel!
     
-    @IBOutlet weak var subButton: UIButton!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        subButton.layer.cornerRadius = subButton.frame.height / 2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

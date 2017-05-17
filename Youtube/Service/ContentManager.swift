@@ -33,9 +33,9 @@ class ContentManager: NSObject {
     
     func getSearchInfo(searchText: String,completion: @escaping (_ dataJson: NSDictionary?, _ error: Error?)->(Void)) -> Void {
         
-        let url = ConstanAPI.base_api_url.appending(ConstanAPI.APIPath.search)
+       let url = ConstanAPI.base_api_url.appending(ConstanAPI.APIPath.search)
+        
         let qParam = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
-        print("search",qParam!)
         
         let params = ["part":"snippet","q":qParam!,"key": ConstanAPI.keyAPI,"maxResults":"20","regionCode":"VN","type":"video","access_token":ConstanAPI.access_tokenKey,"mine":"true"]
         
@@ -43,7 +43,9 @@ class ContentManager: NSObject {
         manager.get(url, parameters: params, progress: nil, success: { (task, responseObject) in
             
             let dataVideo = responseObject as! NSDictionary
-                completion(dataVideo,nil)
+            //print(dataVideo)
+            completion(dataVideo,nil)
+            
          }) { (task, error) in
             
             print(error)
@@ -89,7 +91,7 @@ class ContentManager: NSObject {
     func getVideoChannel(channel: String, completion: @escaping (_ dataJson: NSDictionary?,_ error: Error?)->(Void)){
         let url = ConstanAPI.base_api_url.appending(ConstanAPI.APIPath.activities)
         
-        let param = ["part":"snippet","channelId":channel,"regionCode":"VN", "key": ConstanAPI.keyAPI]
+        let param = ["part":"snippet,contentDetails","channelId":channel,"key": ConstanAPI.keyAPI]
         
         manager.get(url, parameters: param, progress: nil, success: { (task, responseObj) in
             //

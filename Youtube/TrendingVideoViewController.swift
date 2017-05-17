@@ -51,6 +51,7 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
             
             if error == nil {
                 self.videos = VideoModel(videoDict: dictVideo!)
+                print(dictVideo!)
                 self.refeshTableView()
             }
         }
@@ -103,7 +104,7 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
             let cell = tableView.dequeueReusableCell(withIdentifier: "trendingCell", for: indexPath) as! TrendingTableViewCell
             
             cell.backgroundColor = UIColor.white
-            cell.titleVideoLabel.text = videos.itemsArr[indexPath.row ].snippet.title
+            cell.titleVideoLabel.text = videos.itemsArr[indexPath.row].snippet.title
             
             DispatchQueue.global().async {
                 let url = URL(string: self.videos.itemsArr[indexPath.row].snippet.thumb.urlImag)
@@ -120,16 +121,16 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(videos.itemsArr[indexPath.row])
-        print(videos.itemsArr[indexPath.row].iD)
-        //pushVCPlayVideo(video: self.videos.itemsArr[indexPath.row])
+        //print(videos.itemsArr[indexPath.row].contentDetails.videoID)
+        
+        pushVCPlayVideo(video: self.videos.itemsArr[indexPath.row])
     }
     
     func pushVCPlayVideo(video:Items){
         
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "playVideoVC") as? PlayVideoController{
             
-            vc.idVideo = video.iD.videoId
+            vc.idVideo = video.contentDetails.videoID
             
             vc.titleVideoText = video.snippet.title
             
@@ -140,6 +141,7 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
                     guard let dict = items[0] as? NSDictionary else {return}
                     self.channel = ChannelModel(channelItemsDict: dict)
                     vc.channel = self.channel
+                    vc.videos = self.videos
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }

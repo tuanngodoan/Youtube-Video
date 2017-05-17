@@ -12,7 +12,7 @@
 		305577291EB04565000C1D91 /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577261EB04565000C1D91 /* VideoTableViewCell.swift */; };
 		3055772D1EB04586000C1D91 /* ConstantAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055772B1EB04586000C1D91 /* ConstantAPI.swift */; };
 		3055772E1EB04586000C1D91 /* ContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3055772C1EB04586000C1D91 /* ContentManager.swift */; };
-		305577321EB045A8000C1D91 /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577301EB045A8000C1D91 /* ChannelModel.swift */; };
+		305577321EB045A8000C1D91 /* ActiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577301EB045A8000C1D91 /* ActiveModel.swift */; };
 		305577331EB045A8000C1D91 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577311EB045A8000C1D91 /* VideoModel.swift */; };
 		305577381EB045BC000C1D91 /* PlayVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577351EB045BC000C1D91 /* PlayVideoController.swift */; };
 		305577391EB045BC000C1D91 /* ResultVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305577361EB045BC000C1D91 /* ResultVideoViewController.swift */; };
@@ -40,7 +40,7 @@
 		305577261EB04565000C1D91 /* VideoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoTableViewCell.swift; path = View/VideoTableViewCell.swift; sourceTree = "<group>"; };
 		3055772B1EB04586000C1D91 /* ConstantAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConstantAPI.swift; path = Service/ConstantAPI.swift; sourceTree = "<group>"; };
 		3055772C1EB04586000C1D91 /* ContentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentManager.swift; path = Service/ContentManager.swift; sourceTree = "<group>"; };
-		305577301EB045A8000C1D91 /* ChannelModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChannelModel.swift; path = Model/ChannelModel.swift; sourceTree = "<group>"; };
+		305577301EB045A8000C1D91 /* ActiveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActiveModel.swift; path = Model/ActiveModel.swift; sourceTree = "<group>"; };
 		305577311EB045A8000C1D91 /* VideoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoModel.swift; path = Model/VideoModel.swift; sourceTree = "<group>"; };
 		305577351EB045BC000C1D91 /* PlayVideoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayVideoController.swift; path = Controller/PlayVideoController.swift; sourceTree = "<group>"; };
 		305577361EB045BC000C1D91 /* ResultVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultVideoViewController.swift; path = Controller/ResultVideoViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				305577311EB045A8000C1D91 /* VideoModel.swift */,
-				305577301EB045A8000C1D91 /* ChannelModel.swift */,
+				305577301EB045A8000C1D91 /* ActiveModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 				305577271EB04565000C1D91 /* CustomBarButton.swift in Sources */,
 				30B5EFF71EAFDE2300DE1202 /* AppDelegate.swift in Sources */,
 				306B65431EC0402400960B16 /* TabarViewController.swift in Sources */,
-				305577321EB045A8000C1D91 /* ChannelModel.swift in Sources */,
+				305577321EB045A8000C1D91 /* ActiveModel.swift in Sources */,
 				305577391EB045BC000C1D91 /* ResultVideoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

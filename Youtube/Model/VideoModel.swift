@@ -85,8 +85,21 @@ class Snippet: NSObject {
             }
         }
         
-        }
+}
 
+class ContentDetails{
+    
+    var videoID:String!
+    
+    init(contentDict: NSDictionary) {
+        
+        guard let bulletin = contentDict["bulletin"] as? NSDictionary else {return}
+        guard let resourceId = bulletin["resourceId"] as? NSDictionary else {return}
+        guard let videoId = resourceId["videoId"] as? String else {return}
+        
+        self.videoID = videoId
+    }
+}
 
 class Items{
     
@@ -94,6 +107,8 @@ class Items{
     var etag:String!
     var snippet:Snippet!
     var iD:ID!
+    var contentDetails:ContentDetails!
+    
     init(itemDict: NSDictionary){
         //
             if let kind = itemDict[ParamAPI.kind] as? String {
@@ -111,6 +126,9 @@ class Items{
             if let snippetDict = itemDict[ParamAPI.snippet] as? NSDictionary {
                     self.snippet = Snippet(dict: snippetDict)
             }
+        
+        guard let contentDetailDict = itemDict["contentDetails"] as? NSDictionary else {return}
+            self.contentDetails = ContentDetails(contentDict: contentDetailDict)
         }
     }
 

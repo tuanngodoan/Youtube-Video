@@ -10,6 +10,10 @@ import UIKit
 
 class ChannelTableViewCell: UITableViewCell {
 
+    
+    @IBOutlet weak var avataImage:UIImageView!
+    @IBOutlet weak var titleChannel:UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

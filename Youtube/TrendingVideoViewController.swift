@@ -19,6 +19,8 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
     var idVideo:String!
     var urlImage:String!
     
+    @IBOutlet weak var selectTrendingSegmented: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadTrending(channelID: ConstanAPI.idTrend)
@@ -70,6 +72,25 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
         self.tableView.reloadData()
     }
     
+    @IBAction func indexChanged(_ sender: Any) {
+        
+        switch selectTrendingSegmented.selectedSegmentIndex {
+        case 0:
+            loadTrending(channelID: ConstanAPI.idTrend)
+            break
+        case 1:
+            loadTrending(channelID: ConstanAPI.idMusic)
+            break
+        case 2:
+            loadLive()
+            break
+        
+        default:
+            break
+        }
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return videos.itemsArr.count
@@ -78,18 +99,11 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cellResult = UITableViewCell()
-        
-        switch indexPath.row {
-        case 0:
-            break
-        default:
+
             let cell = tableView.dequeueReusableCell(withIdentifier: "trendingCell", for: indexPath) as! TrendingTableViewCell
             
             cell.backgroundColor = UIColor.white
-            cell.titleVideoLabel.text = videos.itemsArr[indexPath.row].snippet.title
-            //cell.titleChannelLabel.text = videos.itemsArr[indexPath.row].snippet.channelTitle
-            
-            
+            cell.titleVideoLabel.text = videos.itemsArr[indexPath.row ].snippet.title
             
             DispatchQueue.global().async {
                 let url = URL(string: self.videos.itemsArr[indexPath.row].snippet.thumb.urlImag)
@@ -99,17 +113,16 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
                     cell.thumbImageView.image = UIImage(data: data!)
                 }
             }
-            cellResult = cell
-            break
             
-        }
-        
+            cellResult = cell
+
         return cellResult
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        pushVCPlayVideo(video: self.videos.itemsArr[indexPath.row])
+        print(videos.itemsArr[indexPath.row])
+        print(videos.itemsArr[indexPath.row].iD)
+        //pushVCPlayVideo(video: self.videos.itemsArr[indexPath.row])
     }
     
     func pushVCPlayVideo(video:Items){

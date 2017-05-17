@@ -12,8 +12,8 @@ struct ConstanAPI {
     static let base_api_url = "https://www.googleapis.com/youtube/v3"
     static let keyAPI = "AIzaSyAT2g4I-H7w7kQ2fKJHwS956Kwu271xO6M"
     static var access_tokenKey = ""
-    //static let access = "access_token=\(access_tokenKey)&mine=true"
-    static let idLive = "UC4R8DWoMoI7CAwX8_LjQHig"
+    
+    //static let idLive = "UC4R8DWoMoI7CAwX8_LjQHig"
     static let idMusic = "UC-9-kyTW8ZkZNDHQJ6FgpwQ"
     static let idTrend = "UCy3AjyBptEC4ODn-JeOp4JQ"
     

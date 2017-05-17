@@ -114,43 +114,38 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-       
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellVideo", for: indexPath) as! VideoTableViewCell
-        
-        
-        if indexPath.row == 0 {
-            cell.selectionStyle = .none
-        }
-        
-        //titile
-        cell.titleVideoLabel.text = searchVideo.itemsArr[indexPath.row].snippet?.title!
-        // description
-        cell.descriptionLabel.text = searchVideo.itemsArr[indexPath.row].snippet?.channelTitle!
+    
 
-        // thumb video
-        
-        DispatchQueue.global().async {
-            let url = URL(string: self.searchVideo.itemsArr[indexPath.row].snippet.thumb.urlImag)
-            let data = try? Data(contentsOf: url!)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cellVideo", for: indexPath) as! VideoTableViewCell
             
-            DispatchQueue.main.async {
-                cell.thumbImage.image = UIImage(data: data!)
+            //titile
+            cell.titleVideoLabel.text = searchVideo.itemsArr[indexPath.row].snippet?.title!
+            // description
+            cell.descriptionLabel.text = searchVideo.itemsArr[indexPath.row].snippet?.channelTitle!
+            
+            // thumb video
+            
+            DispatchQueue.global().async {
+                let url = URL(string: self.searchVideo.itemsArr[indexPath.row].snippet.thumb.urlImag)
+                let data = try? Data(contentsOf: url!)
+                
+                DispatchQueue.main.async {
+                    cell.thumbImage.image = UIImage(data: data!)
+                }
             }
-        }
-        
+    
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                self.pushVCPlayVideo(video: self.searchVideo.itemsArr[indexPath.row])
+
         
-        
-        self.pushVCPlayVideo(video: self.searchVideo.itemsArr[indexPath.row])
+    
 //        let videoLauncher = VideoLauncher()
 //        videoLauncher.showVideoPlayer()
         
-        tableView.deselectRow(at: indexPath, animated: true)
+        //tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func pushVCPlayVideo(video:Items){
@@ -175,43 +170,35 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        if scrollView.contentOffset.y < 1 {
-            //UIView.animate(withDuration: 0.2, animations: {
-                self.navigationController?.isNavigationBarHidden = false
-            //})
-        }else{
-           UIView.animate(withDuration: 0.5, animations: {
-                self.navigationController?.isNavigationBarHidden = true
-           })
-        }
+//        
+//        if scrollView.contentOffset.y < 1 {
+//            //UIView.animate(withDuration: 0.2, animations: {
+//                self.navigationController?.isNavigationBarHidden = false
+//            //})
+//        }else{
+//           UIView.animate(withDuration: 0.9, animations: {
+//                self.navigationController?.isNavigationBarHidden = true
+//           })
+//        }
         
     
-        var offset = scrollView.contentOffset
-        var bounds = scrollView.bounds
-        var size   = scrollView.contentSize
-        var inset  = scrollView.contentInset
-        var y = offset.y + bounds.size.height - inset.bottom
-        var h = size.height;
-        // NSLog(@"offset: %f", offset.y);
-        // NSLog(@"content.height: %f", size.height);
-        // NSLog(@"bounds.height: %f", bounds.size.height);
-        // NSLog(@"inset.top: %f", inset.top);
-        // NSLog(@"inset.bottom: %f", inset.bottom);
-        // NSLog(@"pos: %f of %f", y, h);
+        let offset = scrollView.contentOffset
+        let bounds = scrollView.bounds
+        let size   = scrollView.contentSize
+        let inset  = scrollView.contentInset
+        let y = offset.y + bounds.size.height - inset.bottom
+        let h = size.height;
         
-        var reload_distance = 10
+        let reload_distance = 10
         
-        if Int(y) > ( Int(h) + reload_distance) {
+        if Int(y) > (Int(h) + reload_distance) {
             print("load more rows")
         }
     }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        self.navigationController?.isNavigationBarHidden = true
     }
-    
-
 }
 

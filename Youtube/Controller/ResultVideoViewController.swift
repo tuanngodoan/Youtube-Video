@@ -108,9 +108,11 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     }
     
     
+    var numbersOfRow = 6
+    
     /// Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  searchVideo.itemsArr.count
+        return numbersOfRow
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -170,17 +172,6 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
     
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        
-//        if scrollView.contentOffset.y < 1 {
-//            //UIView.animate(withDuration: 0.2, animations: {
-//                self.navigationController?.isNavigationBarHidden = false
-//            //})
-//        }else{
-//           UIView.animate(withDuration: 0.9, animations: {
-//                self.navigationController?.isNavigationBarHidden = true
-//           })
-//        }
-        
     
         let offset = scrollView.contentOffset
         let bounds = scrollView.bounds
@@ -193,6 +184,15 @@ class ResultVideoViewController: UIViewController, UITableViewDelegate,UITableVi
         
         if Int(y) > (Int(h) + reload_distance) {
             print("load more rows")
+            loadMoreVideo()
+        }
+    }
+    
+    
+    func loadMoreVideo(){
+        if  numbersOfRow < searchVideo.itemsArr.count - 10 {
+            numbersOfRow = numbersOfRow + 5
+            loadVideoCellTable()
         }
     }
     

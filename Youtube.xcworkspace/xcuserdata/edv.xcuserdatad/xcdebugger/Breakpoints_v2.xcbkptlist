@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Youtube/TrendingVideoViewController.swift"
-            timestampString = "516687054.729621"
+            timestampString = "516712845.957052"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "loadTrending(channelID:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -84,7 +84,7 @@ class VideoLauncher:UIViewController {
             let videoPlayView = VideoPlayerView(frame: videoPlayerFrame)
             view.addSubview(videoPlayView)
             
-            keyWindow.addSubview(view)
+            keyWindow.addSubview(view)	
             
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 

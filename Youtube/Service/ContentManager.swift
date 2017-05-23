@@ -37,7 +37,7 @@ class ContentManager: NSObject {
         
         let qParam = searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         
-        let params = ["part":"snippet","q":qParam!,"key": ConstanAPI.keyAPI,"maxResults":"20","regionCode":"VN","type":"video","access_token":ConstanAPI.access_tokenKey,"mine":"true"]
+        let params = ["part":"snippet","q":qParam!,"key": ConstanAPI.keyAPI,"maxResults":"50","regionCode":"VN","type":"video","access_token":ConstanAPI.access_tokenKey,"mine":"true"]
         
        
         manager.get(url, parameters: params, progress: nil, success: { (task, responseObject) in

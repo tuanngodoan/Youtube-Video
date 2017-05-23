@@ -18,12 +18,14 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
     var channel:ChannelModel!
     var idVideo:String!
     var urlImage:String!
+    var checkLoadLive:Bool!
     
     @IBOutlet weak var selectTrendingSegmented: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadTrending(channelID: ConstanAPI.idTrend)
+        checkLoadLive = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,12 +80,15 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
         switch selectTrendingSegmented.selectedSegmentIndex {
         case 0:
             loadTrending(channelID: ConstanAPI.idTrend)
+            checkLoadLive = false
             break
         case 1:
             loadTrending(channelID: ConstanAPI.idMusic)
+            checkLoadLive = false
             break
         case 2:
             loadLive()
+            checkLoadLive = true
             break
         
         default:
@@ -130,7 +135,11 @@ class TrendingVideoViewController: UIViewController,UITableViewDelegate, UITable
         
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "playVideoVC") as? PlayVideoController{
             
-            vc.idVideo = video.contentDetails.videoID
+            if checkLoadLive {
+                vc.idVideo = video.iD.videoId
+            }else{
+                vc.idVideo = video.contentDetails.videoID
+            }
             
             vc.titleVideoText = video.snippet.title
             

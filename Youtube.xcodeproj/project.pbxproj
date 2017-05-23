@@ -94,8 +94,8 @@
 				305577261EB04565000C1D91 /* VideoTableViewCell.swift */,
 				30F6941D1EBDC0BF00AFDF6F /* InfoVideoTableViewCell.swift */,
 				30F6941F1EBDC1A100AFDF6F /* SuggestVideoTableViewCell.swift */,
-				306B65461EC0464200960B16 /* TrendingTableViewCell.swift */,
 				3060745E1EC317160093AC5F /* ChannelTableViewCell.swift */,
+				306B65461EC0464200960B16 /* TrendingTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
